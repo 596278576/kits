@@ -77,4 +77,89 @@ function Kits() {
     }
     return temp;
   };
+
+  //阶乘
+  this.Factorial = function(n) {
+    var jiec = 1;
+    var sum = 0;
+    for (var i = 1; i <= n; i++) {
+      jiec = jiec * i;
+      sum = sum + jiec;
+    }
+    return "阶乘是：" + jiec + "阶乘和是：" + sum;
+  };
+
+  //素数
+  this.su = function(num) {
+    var pd;
+    if (num === 2) {
+      pd = num + "是素数";
+    } else {
+      for (var i = 2; i < num; i++) {
+        if (num % i === 0) {
+          pd = num + "不是素数";
+          break;
+        } else {
+          pd = num + "是素数";
+        }
+      }
+    }
+    return pd;
+  };
+
+  //时间差
+  //console.log(getInterval(new Date(2019, 0, 1), new Date()));
+  this.getInterval = function(start, end) {
+    var day, hour, minute, second, interval;
+    interval = end - start;
+    interval /= 1000;
+    day = Math.round(interval / 60 / 60 / 24);
+    hour = Math.round((interval / 60 / 60) % 24);
+    minute = Math.round((interval / 60) % 60);
+    second = Math.round(interval % 60);
+    return {
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second
+    };
+  };
+
+  //统计某字符在字符串出现的位置
+  this.char = function(chars, i) {
+    var arr = [];
+    do {
+      var index = chars.indexOf(i, index + 1);
+      if (index !== -1) {
+        arr.push(index);
+      }
+    } while (index >= 0);
+    return arr;
+  };
+
+  // 数组去重
+  this.dels = function(arr) {
+    var o = [];
+    function del() {
+      for (var i = 0; i < arr.length; i++) {
+        var item = arr[i];
+        if (o[item]) {
+          o[item]++;
+        } else {
+          o[item] = 1;
+        }
+      }
+
+      var newarr = [];
+      for (var key in o) {
+        if (o[key] == 1) {
+          newarr.push(key);
+        } else {
+          newarr.push(key);
+        }
+      }
+      return newarr;
+    }
+    return del();
+  };
 }
