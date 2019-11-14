@@ -21,4 +21,18 @@ function Kits() {
     }
     return color.join("");
   };
+
+  // 本地存储与json数据转换的封装
+  //arr 是要存储的数组，key是存入本地存储自定义的键，一定要字符串格式
+  this.storage = function(arr, key) {
+    let json = JSON.stringify(arr);
+    localStorage.setItem(key, json);
+  };
+
+  // 从本地缓存中取出来
+  //arr 是拿出来的数组，key本地存储中自定义的键，一定要字符串格式
+  this.storage = function(arr, key) {
+    let data = localStorage.getItem(key);
+    let arr = !data ? [] : JSON.parse(data);
+  };
 }
