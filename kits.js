@@ -26,13 +26,14 @@ function Kits() {
   //arr 是要存储的数组，key是存入本地存储自定义的键，一定要字符串格式
   this.storage = function(arr, key) {
     let json = JSON.stringify(arr);
-    localStorage.setItem(key, json);
+    return localStorage.setItem(key, json);
   };
 
   // 从本地缓存中取出来
   //arr 是拿出来的数组，key本地存储中自定义的键，一定要字符串格式
-  this.storage = function(arr, key) {
+  this.storage = function(key) {
     let data = localStorage.getItem(key);
     let arr = !data ? [] : JSON.parse(data);
+    return arr;
   };
 }
