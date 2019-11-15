@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .box {
+            width: 730px;
+            height: 454px;
+            padding: 8px;
+            border: 1px solid green;
+            margin: 100px auto;
+        }
+
+        .inner {
+            position: relative;
+            overflow: hidden;
+            height: 454px;
+        }
+
+        #imglist {
+            width: 700%;
+            position: absolute;
+            left: 0;
+            transition: left 300ms linear;
+        }
+
+        li {
+            float: left;
+        }
+
+        .list {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -85px;
+        }
+
+        .list i {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #333;
+            float: left;
+            font-style: normal;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: center;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .list i:last-child {
+            margin-right: 0;
+        }
+
+        .list i.current {
+            background-color: skyblue;
+            color: #fff;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            margin-top: -30px;
+        }
+
+        .arrow-left,
+        .arrow-right {
+            width: 30px;
+            height: 60px;
+            position: absolute;
+            font: 20px/60px "consolas";
+            color: #fff;
+            background-color: rgba(0, 0, 0, .3);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .arrow-right {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="inner" id="inner">
+            <ul id="imglist">
+                <li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/6.jpg" alt=""></a></li>
+            </ul>
+            <div class="list">
+                <i class="current">1</i>
+                <i>2</i>
+                <i>3</i>
+                <i>4</i>
+                <i>5</i>
+                <i>6</i>
+            </div>
+            <div class="arrow">
+                <span class="arrow-left">&lt;</span>
+                <span class="arrow-right">&gt;</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./kits/kits.js"></script>
+<script>
+    var swiper1 = new Kits();
+    var inner = document.querySelector(".inner");
+    var ul = document.querySelector("ul");
+    var icon = document.querySelectorAll(".list>i");
+    var left = document.querySelector(".arrow-left");
+    var right = document.querySelector(".arrow-right");
+    swiper1.swiper(inner, ul, icon, left, right);
+
+</script>
+
+</html>

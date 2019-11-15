@@ -162,4 +162,71 @@ function Kits() {
     }
     return del();
   };
+
+  //轮播图封装
+  this.swiper = function(inner, ul, icon, left, right) {
+    // var inner = document.querySelector(".inner");
+    // var ul = document.querySelector("ul");
+    // var icon = document.querySelectorAll(".list>i");
+    // var left = document.querySelector(".arrow-left");
+    // var right = document.querySelector(".arrow-right");
+    var inner, ul, icon, left, right;
+    let currentImgIndex = 0;
+
+    //序号轮播
+    icon.forEach(function(e, i) {
+      e.onmouseover = function() {
+        let pstion = inner.offsetWidth * i * -1;
+        ul.style.left = pstion + "px";
+
+        icon.forEach(function(e) {
+          e.classList.remove("current");
+        });
+        this.classList.add("current");
+      };
+    });
+
+    //注册右击事件
+    right.onclick = function() {
+      if (currentImgIndex == 5) {
+        currentImgIndex = -1;
+      }
+      currentImgIndex++;
+      let pstion = inner.offsetWidth * currentImgIndex * -1;
+      ul.style.left = pstion + "px";
+
+      icon.forEach(function(e) {
+        e.classList.remove("current");
+      });
+      icon[currentImgIndex].classList.add("current");
+    };
+    //注册左击事件
+    left.onclick = function() {
+      if (currentImgIndex == 0) {
+        currentImgIndex = 6;
+      }
+      currentImgIndex--;
+      let pstion = inner.offsetWidth * currentImgIndex * -1;
+      ul.style.left = pstion + "px";
+
+      icon.forEach(function(e) {
+        e.classList.remove("current");
+      });
+      icon[currentImgIndex].classList.add("current");
+    };
+
+    //定时器实现自动轮播
+    let timeId = setInterval(function() {
+      right.onclick();
+    }, 1500);
+    //鼠标移入悬停
+    inner.onmouseover = function() {
+      clearInterval(timeId);
+    };
+    inner.onmouseout = function() {
+      timeId = setInterval(function() {
+        right.onclick();
+      }, 1500);
+    };
+  };
 }
