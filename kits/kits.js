@@ -229,4 +229,14 @@ function Kits() {
       }, 1500);
     };
   };
+
+  // 定时器验证码封装
+  this.timer = function(btn) {
+    let time = 60;
+    btn.value = time;
+    setInterval(function() {
+      time--;
+      btn.value = time;
+    }, 1000);
+  };
 }
