@@ -320,4 +320,24 @@ function Kits() {
       }, 200);
     };
   };
+
+  //手拉风琴轮播图效果封装
+  this.Organ = function(li, arr) {
+    li.forEach(function(e, i) {
+      e.innerHTML = `<a href=""><img src="${arr[i]}" alt=""></a>`;
+
+      e.onmouseover = function() {
+        li.forEach(function(e2, i2) {
+          e2.style.width = 100 + "px";
+        });
+        this.style.width = 800 + "px";
+      };
+
+      e.onmouseout = function() {
+        li.forEach(function(e3, i3) {
+          e3.style.width = 240 + "px";
+        });
+      };
+    });
+  };
 }
