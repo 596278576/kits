@@ -239,4 +239,43 @@ function Kits() {
       btn.value = time;
     }, 1000);
   };
+
+  //淘宝放大镜效果封装
+  this.Magnifier = function(box, small, simg, big, mask, bimg) {
+    small.onmouseover = function(e) {
+      mask.style.display = "block";
+      big.style.display = "block";
+    };
+    small.onmouseout = function() {
+      mask.style.display = "none";
+      big.style.display = "none";
+    };
+    small.onmousemove = function(e) {
+      // 遮罩位置的公式：鼠标位置-减去盒子相对页面额度偏移量-遮罩宽度的一般
+      let x = e.pageX;
+      let y = e.pageY;
+      let smallX = box.offsetLeft;
+      let smallY = box.offsetTop;
+      let maskX = mask.offsetWidth / 2;
+      let maskY = mask.offsetHeight / 2;
+      let left = x - smallX - maskX;
+      let top = y - smallY - maskY;
+      let maxY = box.offsetHeight - mask.offsetHeight;
+      let maxX = box.offsetWidth - mask.offsetWidth;
+      left = left < 0 ? 0 : left;
+      top = top < 0 ? 0 : top;
+      left = left > maxX ? maxX : left;
+      top = top > maxY ? maxY : top;
+      mask.style.left = left + "px";
+      mask.style.top = top + "px";
+
+      //放大后的效果位置：遮罩位置/遮罩移动最大值=放大镜显示盒子位置/显示盒子能移动的最大值
+      //遮罩位置/遮罩移动最大值=放大镜显示盒子=显示盒子位置/大图片减去显示盒子宽高
+
+      let bleft = (left / maxX) * (bimg.offsetWidth - big.offsetWidth);
+      let btop = (top / maxY) * (bimg.offsetHeight - big.offsetHeight);
+      bimg.style.left = -bleft + "px";
+      bimg.style.top = -btop + "px";
+    };
+  };
 }
