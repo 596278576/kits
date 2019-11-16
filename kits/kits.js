@@ -295,4 +295,29 @@ function Kits() {
       };
     });
   };
+
+  //旋转木马轮播图封装
+  this.rotate = function(li, lbtn, rbtn, arr) {
+    window.onload = function() {
+      li.forEach(function(e, i) {
+        e.className = arr[i];
+      });
+      rbtn.onclick = function() {
+        arr.push(arr.shift());
+        li.forEach(function(e, i) {
+          e.className = arr[i];
+        });
+      };
+      lbtn.onclick = function() {
+        arr.unshift(arr.pop());
+        li.forEach(function(e, i) {
+          e.className = arr[i];
+        });
+      };
+
+      setInterval(function() {
+        rbtn.onclick();
+      }, 200);
+    };
+  };
 }
