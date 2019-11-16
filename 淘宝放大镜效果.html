@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 450px;
+            height: 450px;
+            border: 1px solid #aaa;
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+
+        .small {
+            width: 450px;
+            height: 450px;
+            position: absolute;
+        }
+
+        .mask {
+            position: absolute;
+            background-color: rgba(255, 255, 0, .3);
+            width: 225px;
+            height: 225px;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .big {
+            width: 450px;
+            height: 450px;
+            border: 1px solid #aaa;
+            position: absolute;
+            left: 500px;
+            top: 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        .big>img {
+            width: 900px;
+            height: 900px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="small">
+            <img src="./images/s.jpg" alt="">
+            <div class="mask"></div>
+        </div>
+        <div class="big">
+            <img src="./images/big.jpg" alt="">
+        </div>
+    </div>
+</body>
+<script src="./kits/kits.js"></script>
+<script>
+    let box = document.querySelector('.box');
+    let small = document.querySelector('.small');
+    let simg = document.querySelector('.small img');
+    let big = document.querySelector('.big');
+    let mask = document.querySelector('.mask');
+    let bimg = document.querySelector('.big img');
+    let fdj = new Kits();
+    fdj.Magnifier(box, small, simg, big, mask, bimg);
+
+</script>
+
+</html>
