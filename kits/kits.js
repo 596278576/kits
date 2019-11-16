@@ -278,4 +278,21 @@ function Kits() {
       bimg.style.top = -btop + "px";
     };
   };
+
+  //淘宝鼠标移上去整个div切换效果
+  this.tab = function(li, main) {
+    li.forEach(function(e, i) {
+      e.onmouseover = function() {
+        li.forEach(function(item) {
+          item.classList.remove("active");
+        });
+        this.classList.add("active");
+
+        main.forEach(function(item) {
+          item.classList.remove("selected");
+        });
+        main[i].classList.add("selected");
+      };
+    });
+  };
 }
