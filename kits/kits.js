@@ -176,6 +176,7 @@ function Kits() {
     //序号轮播
     icon.forEach(function(e, i) {
       e.onmouseover = function() {
+        currentImgIndex = i;
         let pstion = inner.offsetWidth * i * -1;
         ul.style.left = pstion + "px";
 
