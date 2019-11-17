@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 40vw;
+      /* v viewport w width 指的是视口的宽度 把视口分成100份，给多事少vw 就是站100份里面的多杀份 */
+      height: 20vh;
+      /* 新单位，也是把视口高度分成100份，给多少分，就是多高 */
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+</body>
+<script src="./kits/kits.js"></script>
+<script>
+
+  let box = document.querySelector('.box');
+  let tap = new Kits();
+  tap.tap(box, function () {
+    alert('点击弹出');
+  })
+
+</script>
+
+</html>

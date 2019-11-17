@@ -340,4 +340,39 @@ function Kits() {
       };
     });
   };
+
+  //开发移动端点击事件封装
+  this.tap = function(box, fn, time, jl) {
+    time = time || 250;
+    jl = jl || 50;
+    let time1, time2, x1, y1, x2, y2;
+    box.addEventListener("touchstart", function(e) {
+      if (e.touches.length !== 1) {
+        console.log("不是单指操作");
+        return;
+      }
+      time1 = Date.now();
+      x1 = e.touches[0].clientX;
+      y1 = e.touches[0].clientY;
+    });
+    box.addEventListener("touchend", function(e) {
+      if (e.changedTouches.length !== 1) {
+        console.log("不是单指操作");
+        return;
+      }
+      time2 = Date.now();
+      if (time2 - time1 > time) {
+        console.log("点击超时");
+        return;
+      }
+      x2 = e.changedTouches[0].clientX;
+      y2 = e.changedTouches[0].clientY;
+      if (Math.abs(x2 - x1) > jl || Math.abs(y2 - y1) > jl) {
+        console.log("滑动的太远了");
+        return;
+      }
+      console.log("正常点击");
+      fn();
+    });
+  };
 }
