@@ -375,4 +375,77 @@ function Kits() {
       fn();
     });
   };
+
+  //移动端触摸轮播图封装 需要引入zepto.js跟touch.js
+  this.m_swiper = function(ul, imgWidth) {
+    // let ul = document.querySelector("ul");
+    // 定义一个变量，记录当前是第几张图片
+    let currentImgIndex = 1;
+    // 记录图片的宽度
+    // let imgWidth = document.querySelector('.cour').offsetWidth;
+    // let imgWidth = $(".cour").width(); // 这是zepto里面获取元素宽度的写法
+    // 为了保证一开始显示的是真正的第一张，先设置一次ul的位置
+    let target = currentImgIndex * imgWidth * -1;
+    // 修改的是ul的transform属性了
+    ul.style.transform = "translate(" + target + "px)";
+    // 一开始并不需要动画
+    ul.classList.remove("move");
+    // 等一小会儿，把类名加回去
+    setTimeout(function() {
+      ul.classList.add("move");
+    }, 10);
+
+    // console.log(imgWidth);
+    // 获取ul，注册左滑动事件
+    $("ul").on("swipeLeft", function() {
+      // 左划让图片从n到n+1张
+      currentImgIndex++;
+      // console.log('左滑动');
+      // 算出ul的位置，设置给ul即可
+      let target = currentImgIndex * imgWidth * -1;
+      // 修改的是ul的transform属性了
+      ul.style.transform = "translate(" + target + "px)";
+    });
+
+    // 注册右滑动事件
+    $("ul").on("swipeRight", function() {
+      // 让图片从n到n-1张
+      currentImgIndex--;
+      // 算出ul的位置，设置给它
+      let target = currentImgIndex * imgWidth * -1;
+      ul.style.transform = "translate(" + target + "px)";
+    });
+
+    // 为了实现无缝滚动
+    // 1 把第一张，复制一份，放到最后，然后我们给ul注册一个过渡结束事件，如果过渡动画到达了最后一张(用户认为的第一张)，立刻悄悄的把最后一张，替换为实际的第一张
+    ul.addEventListener("transitionend", function() {
+      console.log("过渡结束了");
+      // 判断 currentImgIndex 是否已经是最后一张
+      if (currentImgIndex === ul.children.length - 1) {
+        // 已经是最后一张了，立刻切换到底0张
+        currentImgIndex = 1;
+        let target = currentImgIndex * imgWidth * -1;
+        ul.style.transform = "translate(" + target + "px)";
+        //现在因为我们不需要过渡动画，我们需要把过渡动画去除
+        // 1.我们可以设置过渡的时间是0秒
+        // 2.我们还可以使用一个类名对过渡进行控制,需要的时候，就添加，不需要的时候，移除
+        ul.classList.remove("move");
+        // 等一小会儿，把类名加回去
+        setTimeout(function() {
+          ul.classList.add("move");
+        }, 10);
+      }
+      //判断是否是右划动，画到了假的第6张
+      if (currentImgIndex === 0) {
+        currentImgIndex = ul.children.length - 2;
+        let target = currentImgIndex * imgWidth * -1;
+        ul.style.transform = "translate(" + target + "px)";
+        ul.classList.remove("move");
+        // 等一小会儿，把类名加回去
+        setTimeout(function() {
+          ul.classList.add("move");
+        }, 10);
+      }
+    });
+  };
 }

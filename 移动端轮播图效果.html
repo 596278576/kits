@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      height: 100px;
+      background-color: red;
+    }
+
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      width: 800%;
+    }
+
+    .move {
+      transition: transform 400ms linear;
+    }
+
+    li {
+      flex: 1;
+    }
+
+    .cour {
+      max-width: 760px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="cour">
+      <ul class="move">
+        <li><a href="#"><img src="./images/6.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/1.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/2.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/3.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/4.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/5.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/6.jpg" alt=""></a></li>
+        <li><a href="#"><img src="./images/1.jpg" alt=""></a></li>
+      </ul>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+<script src="./10-zepto.js"></script>
+<script src="./12-touch.js"></script>
+<script src="./kits/kits.js"></script>
+<script>
+  /* 
+    效果：
+      1.左滑动
+        让图片从n到n+1张
+      2.右划动
+        让图片从n到n-1张
+  
+    之前的轮播图让我们知道换一个公式：
+      ul的位置 = 索引 * 图片宽度 * -1
+  */
+  //获取ul
+  let ul = document.querySelector('ul');
+  let imgWidth = $('.cour').width();
+  let swiper = new Kits();
+  swiper.m_swiper(ul, imgWidth);
+</script>
+
+</html>
