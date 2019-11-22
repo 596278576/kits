@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .background-gradient {
+            background: rgb(44, 136, 207);
+            position: relative;
+            width: 500px;
+            height: 200px;
+        }
+
+        .background-gradient .mask {
+            background-image: linear-gradient(to right, rgb(44, 136, 207), transparent), url("./images/1.jpg");
+            background-position: center;
+            background-blend-mode: normal;
+            position: absolute;
+            height: 100%;
+            width: 180px;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-gradient">
+        <div class="mask"></div>
+    </div>
+</body>
+
+</html>
