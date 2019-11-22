@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .flash {
+   position: relative;
+   width: 500px;
+}
+.flash img {
+    width: 100%;
+}
+.flash-bar {
+   position: absolute;
+   left:-100px;
+   width: 20px;
+   height: 100%;
+   background: #fff;
+   opacity: 0.5;
+   transform: skewX(-30deg);
+   transform-origin: 0 100%;
+}
+.flash:hover .flash-bar {
+  left:900px;
+  transition: left ease-in-out 1s;
+}
+
+</style>
+</head>
+<body>
+    <div class="flash">
+        <div class="flash-bar"></div>
+        <img src="./images/01.jpg" />
+</div>
+</body>
+</html>
