@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .box {
+      width: 400px;
+      height: 400px;
+      border: 1px solid #000;
+      margin: 100px auto;
+      border-bottom: 0 none;
+    }
+    .row {
+      display: flex;
+      border-bottom: 1px solid #000;
+    }
+    .item {
+      width: 100px;
+      height: 40px;
+      border-right: 1px solid #000;
+      /* line-height: 40px;
+      text-align: center; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .content {
+      height: 357px;
+      flex: 0 0 100%;
+      display: none;
+    }
+    .active {
+      background-color: red;
+    }
+    .show {
+      display: block;
+    }
+    .a2 {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="row">
+      <div class="item">影音</div>
+      <div class="item">书籍</div>
+      <div class="item">零食</div>
+    </div>
+    <div class="row">
+      <div class="content show">影音的内容</div>
+      <div class="content">书籍的内容</div>
+      <div class="content">零食的内容</div>
+    </div>
+  </div>
+</body>
+<script>
+class Tap{
+  constructor(def){
+    let option={
+      item:'.item',
+      content:'.content',
+      mouseover:'mouseover',
+      active:'active',
+      show:'show'
+    }
+    Object.assign(option,def);
+    Object.assign(this,option);
+    this.items=document.querySelectorAll(this.item);
+    this.content=document.querySelectorAll(this.content);
+    this.zhuce();
+  }
+  zhuce(){
+    this.items.forEach((e,i)=>{
+      e.addEventListener(this.mouseover,(e=>{
+        this.qiehuan1(e.target);
+        this.qiehuan2(i);
+      }))
+    })
+  }
+
+  qiehuan1(target){
+    this.items.forEach(e=>{
+      e.classList.remove(this.active)
+    })
+    target.classList.add(this.active)
+    // clearInterval(this.times);
+  }
+
+  qiehuan2(i){
+    this.content.forEach(e=>{
+      e.classList.remove(this.show)
+    })
+    this.content[i].classList.add(this.show)
+  }
+}
+
+let tap=new Tap();
+</script>
+
+</html>
